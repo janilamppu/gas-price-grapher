@@ -1,17 +1,17 @@
-import './App.css';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import {
-	LineChart,
+	CartesianGrid,
+	Legend,
 	Line,
+	LineChart,
+	ResponsiveContainer,
+	Tooltip,
 	XAxis,
 	YAxis,
-	CartesianGrid,
-	Tooltip,
-	Legend,
-	ResponsiveContainer,
 } from 'recharts';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { getPricesPerMonth, getPriceForDays } from './utils/dataParser';
+import './App.css';
+import { getPriceForDays, getPricesPerMonth } from './utils/dataParser';
 
 const App = () => {
 	const [priceData, setPriceData] = useState([]);
@@ -27,6 +27,7 @@ const App = () => {
 			const url = `${process.env.REACT_APP_API_URL}/get-prices`;
 			const response = await axios.get(url, { headers });
 			const items = response.data;
+
 			setPriceData(items);
 		}
 

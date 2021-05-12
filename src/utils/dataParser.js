@@ -1,4 +1,4 @@
-import { groupBy, uniqBy, slice } from 'lodash';
+import { groupBy, uniqBy, slice, orderBy } from 'lodash';
 import moment from 'moment';
 
 export const getPriceForDays = (data, daysToShow) => {
@@ -52,5 +52,5 @@ export const getPricesPerMonth = (data) => {
 		res.biogas.zone2 = (res.biogas.zone2 / noOfRecordsPerMonth).toFixed(2);
 		return res;
 	});
-	return monthData;
+	return orderBy(monthData, (e) => moment(e.date, 'MMMM YYYY'));
 };
